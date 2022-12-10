@@ -137,8 +137,27 @@ const bc1 = {
 
 
 
+console.log('Innicializado=> ', bitcoin)
+const previus = bitcoin.getLastBlock();
+console.log('previus=> ',  previus)
 
-console.log('VALID: ', bitcoin.chainIsValid(bc1.chain));
+const newBlock = {
+    "nombreEvento": "Cypress Hill",
+    "fechaEvento": new Date('22-12-2022'),
+    "Precio": 35.000
+};
+const nonce = bitcoin.proofOfWork(previus, newBlock);
+console.log("proof=> ", nonce);
+
+
+bitcoin.createNewBlock(0, previus, bitcoin.hashBlock(previus, newBlock, nonce ));
+
+console.log("nuevo bloque creado=> ", bitcoin)
+
+
+
+
+//console.log('VALID: ', bitcoin.chainIsValid(bc1.chain));
 
 
 
